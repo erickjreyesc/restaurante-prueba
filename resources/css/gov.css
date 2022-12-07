@@ -1,0 +1,135 @@
+/* header y Footer GOV Azul */
+.he_header {
+    background: #3366cc;
+    background: -moz-linear-gradient(left, #3366cc 50%, #e5eefb 50%);
+    background: -webkit-linear-gradient(left, #3366cc 50%, #e5eefb 50%);
+    background: linear-gradient(to right, #3366cc 50%, #e5eefb 50%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#e5eefb', GradientType=1);
+    font: Regular 12px/14px Montserrat;
+    letter-spacing: 0;
+    color: #0b457f;
+    opacity: 1;
+    font-size: 12px;
+    align-items: center;
+}
+
+/*
+.he_menu {
+    background: #e5eefb;
+}
+*/
+
+.he_logo img {
+    height: 30px;
+}
+
+.he_header p {
+    margin: 0;
+}
+
+.he_footer p,
+.he_footer h1,
+.he_footer h2,
+.he_footer h3,
+.he_footer h4,
+.he_footer h5,
+.he_footer h6,
+.he_footer b,
+.he_footer a {
+    color: white;
+}
+
+.he_footer a {
+    font-size: 0.85em;
+    color: white;
+}
+
+.he_footer img,
+.he_footer svg {
+    vertical-align: middle;
+}
+
+.he_footer {
+    background: #3366cc 0% 0% no-repeat padding-box;
+    padding: 35px;
+    font: Regular 12px/14px Montserrat;
+    letter-spacing: 0;
+    color: #ffffff;
+    opacity: 1;
+    font-size: 12px;
+}
+
+.he_footer .logo img {
+    height: 30px;
+}
+
+.he_footer .split,
+.he_footer .no-split {
+    padding: 15px 25px;
+}
+
+.he_footer .logos {
+    text-align: center;
+}
+
+.he_footer .split,
+.he_footer .no-split {
+    padding: 15px 25px;
+}
+
+.he_footer .split-top {
+    border-top: 1px solid #ffffff;
+}
+
+.he_footer h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.he_footer p {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.he_footer_redes {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 991px) {
+
+    .he_footer .split,
+    .he_footer .no-split {
+        padding: 25px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .he_footer .split {
+        border-bottom: 1px solid #ffffff;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .he_footer .split {
+        border-right: none;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+
+    .he_footer .split,
+    .he_footer .no-split[data-v-2286311f] {
+        padding: 25px;
+    }
+}
+
+.text-block {
+    margin: 0;
+    font-size: .8em;
+}
+
+/* Accesibilidad */
+

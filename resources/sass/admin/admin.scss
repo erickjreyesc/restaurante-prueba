@@ -1,0 +1,25 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap");
+
+// Variables
+@import "../misc/variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// fontawesome
+@import "../misc/fontawesome";
+
+@import "./styles";
+
+@import "~flatpickr/dist/themes/material_red.css" ;
+
+@import "~filepond/dist/filepond.css";
+
+@import "./filepond";
+
+@import '~@yaireo/tagify/dist/tagify.css';
+
+@import "../misc/preloader";
+
+

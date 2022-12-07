@@ -1,0 +1,88 @@
+#overlay {
+    height: 100%;
+    width: 100%;
+    background: #fcfdfd;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    transition: all .5s linear;
+}
+
+.animate-loader {
+    font-family: "Montserrat", sans-serif, Arial;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -1em;
+    animation: load 2s infinite 0s ease-in-out;
+    animation-direction: alternate;
+} 
+
+.circle::before,
+.circle::after {
+    content: "";
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: url("/images/logos/logo.png") no-repeat center center;
+    opacity: 0.45;
+    z-index: 100;
+}
+
+.circle::after {
+    animation-delay: -1.5s;
+}
+
+.hidden {
+    display: none;
+}
+
+.visuallyhidden {
+    opacity: 0;
+}
+
+.icono {
+    width: 42px;
+    height: 42px;
+    margin-top: 12px;
+    margin-left: 14.5px;
+}
+
+@keyframes load {
+    0% {
+        opacity: 0.08;
+        filter: blur(5px);
+        letter-spacing: 3px;
+        color: #004884;
+    }
+
+    100% {
+        color: #f22f63;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        width: 120px;
+        height: 120px;
+        border: 8px solid gray;
+    }
+
+    50% {
+        width: 130px;
+        height: 130px;
+        border: 8px solid transparent;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        border: 8px solid transparent;
+    }
+}

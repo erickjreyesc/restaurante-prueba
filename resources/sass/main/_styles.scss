@@ -1,0 +1,154 @@
+body {
+    background: #fff;
+    font-size: 14px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+}
+
+.btn {
+    box-shadow: 0 0 0 0.25rem rgba(52, 144, 220, 0);
+}
+
+.bg-menu {
+    border-bottom: 1px solid $bg-rose;
+}
+
+.bg-menu img,
+.logoicc {
+    width: 80px;
+    height: 80px;
+}
+
+.bg-menu .logomin,
+footer .logomin {
+    width: 320px;
+    height: 55px;
+}
+
+.bg-footer {
+    background-color: $footer-gov;
+}
+
+.btn-blue {
+    background-color: $text-blue-title;
+    color: white;
+}
+
+a.btn, a.btn:hover {
+    text-decoration: none !important;
+}
+
+.bg-blue {
+    background-color: $header-blue;
+    color: white;
+}
+
+.btn-network {
+    border: 1px $text-gray solid;
+}
+
+.code{
+    font-size: 7.5em;
+}
+.code-section{
+    font-size: 2em;
+    color: #715921;
+}
+
+.code-text {
+    font-size: 1.3em;
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    @media only screen and (max-width: 576px) {
+        width: 100% !important;
+    }
+
+    @media (min-width: 541px) and (max-width: 575px) {
+        max-width: 540px !important;
+    }
+
+    @media (min-width: 576px) and (max-width: 768px) {
+        max-width: 720px !important;
+    }
+
+    @media (min-width: 769px) and (max-width: 991px) {
+        max-width: 960px !important;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        max-width: 1163px !important;
+    }
+}
+
+.footer-img {
+    justify-content: flex-end !important;
+
+    @media only screen and (max-width: 992px) {
+        justify-content: center !important;
+    }
+
+    .logoicc {
+        @media only screen and (max-width: 360px) {
+            justify-content: center !important;
+        }
+    }
+}
+
+footer .logomin {
+    @media only screen and (max-width: 360px) {
+        display: none;
+    }
+
+    @media (min-width: 361px) and (max-width: 612px) {
+        width: 240px;
+        height: 55px;
+        margin-bottom: 1.1rem;
+    }
+}
+
+footer .text-block {
+    color: white;
+}
+
+.footer img,
+.footer svg {
+    vertical-align: middle;
+}
+
+.logo img {
+    height: 30px;
+}
+
+.logo_co img {
+    height: 50px;
+}
+
+.mt-6 {
+    margin-bottom: 1.3cm !important;
+    margin-top: 1.3cm !important;
+}
+
+.mb-7 {
+    margin-bottom: 4rem !important;
+}
+
+.page-error {
+    min-height: 350px !important;
+}
+
+.banner h1 {
+    color: #715921;
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-align: center !important;
+    margin-top: 25px;
+}
+
+.banner h1 span {
+    font-size: 1.5rem;
+}
