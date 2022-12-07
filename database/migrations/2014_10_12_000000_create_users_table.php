@@ -22,7 +22,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable()->comment('Fecha de verificacion del usuario');
             $table->string('contrasena')->comment('Contraseña del usuario');
             $table->rememberToken()->comment('Código de recuerda al usuario dentro de una sesión');
-            $table->foreignId('current_team_id')->nullable()->comment('Código identificador que recuerda a un usuario en una sesión');
             $table->string('profile_photo_path', 2048)->nullable()->comment('Imagen avatar del usuario');
             $table->boolean('estado')->default(true)->comment('Estado del usuario');
             $table->timestamps();

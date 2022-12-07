@@ -12,8 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/admin/admin.js', 'public/js')
-    .js('resources/js/admin/ckeditor.js', 'public/js')
-    .js('resources/js/admin/filepond.js', 'public/js')
     .js('resources/js/main/app.js', 'public/js')
     .sass('resources/sass/main/app.scss', 'public/css')
     .sass('resources/sass/admin/admin.scss', 'public/css')

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Actas;
+namespace App\Models\Param;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InvitacionConvocatoria extends Model
+class TipoOperacion extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,12 @@ class InvitacionConvocatoria extends Model
      *
      * @var string
      */
-    protected $table = 'invitacion_convocatoria';
+    protected $table = 'tipo_operacion';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['email'];
+    protected $fillable = ['nombre', 'descripcion'];
 }

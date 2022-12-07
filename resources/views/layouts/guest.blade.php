@@ -20,13 +20,11 @@
 
 <body>
     @include('layouts.main.loader')   
-    @include('layouts.main.header')
-    @include('layouts.main.accesibilidad')
+    
     <div class="content">
         {{ $slot }}
     </div>
 
-    @include('layouts.main.footer')
     @livewireScripts
     @stack('scripts')
 </body>

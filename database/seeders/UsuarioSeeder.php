@@ -15,11 +15,10 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         \App\Models\User::create([
-            'usuario' => 'veronica.borges',
-            'nombre' => 'Veronica Borges',
-            'email' => 'veronica.borges@idipron.gov.co',
+            'usuario' => 'usuario',
+            'nombre' => 'usuario',
+            'email' => 'usuario@restaurante.com.co',
             'contrasena' => Hash::make('password123***'),
-            'dependencia_id' => 1
         ])->assignRole('Administrador'); 
     }
 }

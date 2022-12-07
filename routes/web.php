@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\Admin\CMSController;
 use App\Http\Controllers\Main\AuthController;
-use App\Http\Livewire\Admin\Actas\FormActasComponent;
-use App\Http\Livewire\Admin\Actas\ListarActasComponent;
-use App\Http\Livewire\Admin\Param\DependenciaComp;
-use App\Http\Livewire\Admin\Param\TipoReunionComponent;
+use App\Http\Livewire\Admin\Param\TipoOperacionComp;
+use App\Http\Livewire\Admin\Param\TipoProductoComp;
 use App\Http\Livewire\Admin\Security\Permisos\Roles;
 use App\Http\Livewire\Admin\Security\Registros;
 use App\Http\Livewire\Admin\Security\Usuarios;
+use App\Http\Livewire\Admin\Transacciones\OrdenesComp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,29 +32,28 @@ Route::middleware(['auth:sanctum', 'verified', 'check-login', 'prevent-back-hist
     })->name('dashboard');
 
     Route::prefix('seguridad')->group(function () {
-        Route::get('/usuarios', Usuarios::class)->name('security.usuarios')
-            ->middleware('permission:usuarios.listar|usuarios.agregar|usuarios.editar|usuarios.cambiar|usuarios.eliminar|usuarios.reset');
+        Route::get('/usuarios', Usuarios::class)->name('usuario.listar')
+            ->middleware('permission:usuario.listar|usuario.agregar|usuario.editar|usuario.cambiar|usuario.eliminar|usuario.reset');
         Route::get('/roles-permisos', Roles::class)->name('roles.listar')
             ->middleware('permission:roles.listar|roles.agregar|roles.editar|roles.cambiar|roles.eliminar');
-        Route::get('/registros', Registros::class)->name('security.logs')
+        Route::get('/registros', Registros::class)->name('registro.listar')
             ->middleware('permission:registros.listar');
     });
 
-
-    Route::prefix('reuniones')->group(function () {
-        Route::get('/actas', ListarActasComponent::class)->name('actas.listar');
-        Route::get('/actas/agregar', FormActasComponent::class)->name('actas.agregar');
-        Route::get('/actas/editar/{reunion}', FormActasComponent::class)->name('actas.editar');
+    Route::prefix('ventas')->group(function () {
+        Route::get('/ordenes', OrdenesComp::class)->name('venta.listar')->middleware('permission:ventas.listar|ventas.agregar|ventas.editar|ventas.cambiar|ventas.eliminar');
+        Route::get('/reportes', OrdenesComp::class)->name('reporte.listar')->middleware('permission:reporte.listar|reporte.generar|reporte.xls');
+        Route::get('/productos', OrdenesComp::class)->name('producto.listar')->middleware('permission:producto.listar|producto.agregar|producto.editar|producto.cambiar|producto.eliminar');
     });
 
-    Route::prefix('params')->group(function () {
-        Route::get('tipo-reunion', TipoReunionComponent::class)
-            ->middleware('permission:tipo-reunion.listar|tipo-reunion.agregar|tipo-reunion.editar|tipo-reunion.cambiar|tipo-reunion.eliminar')
-            ->name('tipo-reunion.listar');
-        Route::get('dependencias', DependenciaComp::class)
-            ->middleware('permission:dependencia.listar|dependencia.agregar|dependencia.editar|dependencia.cambiar|dependencia.eliminar')
-            ->name('dependencia.listar');
+
+    Route::prefix('parametros')->group(function () {
+        Route::get('/tipo-producto', TipoProductoComp::class)->name('tipo-producto.listar')
+            ->middleware('permission:tipo-producto.listar|tipo-producto.agregar|tipo-producto.editar|tipo-producto.cambiar|tipo-producto.eliminar');
+        Route::get('/tipo-operacion', TipoOperacionComp::class)->name('tipo-operacion.listar')
+            ->middleware('permission:tipo-operacion.listar');
     });
+
 
     Route::get('/exportar/pdf/{solicitud}/vista/{textform}', [CMSController::class, 'PdfDetailsSolicitud'])->name('pdf.export');
 });

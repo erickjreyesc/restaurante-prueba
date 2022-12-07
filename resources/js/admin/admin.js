@@ -10,8 +10,4 @@ require('./notifications');
 
 require('./scripts');
 
-require('./flatpickr');
-
-require('./tagify'); 
-
 require("../preloader");
