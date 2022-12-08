@@ -1,15 +1,11 @@
-# Micrositio de Peticiones, Quejas, Reclamos, Sugerencias y Denuncias.
+# Prueba de Resturante.
 
-_Micrositio - CMS de Peticiones, Quejas, Reclamos, Sugerencias y Denuncias._
-
-## Licencia.
-
-_Ver Licencia [LICENSE](license.md)_
+_Prueba de Resturante._
 
 ## Requerimientos Mínimos.
 
 ```
-* PHP >= 7.3|^8.0
+* PHP >= ^8.0
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
@@ -18,8 +14,8 @@ _Ver Licencia [LICENSE](license.md)_
 * Ctype PHP Extension
 * JSON PHP Extension
 * BCMath PHP Extension
-* node 16.13.1
-* npm 8.1.3
+* node 18.12.1*
+* npm 8.19.2
 * ldap
 ```
 
@@ -59,17 +55,6 @@ MAIL_*
 APP_DEBUG=false
 APP_ENV=production
 ```
-## _Ajustar Dominio o subominio en la aplicación_
-
-```
-APP_URL=http://localhost to http://maestrias.caroycuervo.gov.co
-```
-
-## _Ajustar Dominio o subominio en el archivo sitemap.xml_
-
-```
-<loc>http://maestrias.caroycuervo.gov.co/sitemap</loc>
-```
 
 ## _Generar la llave del Proyecto_
 
@@ -93,22 +78,10 @@ php artisan storage:link
 
 - rewrite, headers
 
-## Instalación de Rendimiento Memoria.
-
--   [REDIS](redis.md) - Almacén de clave-valor avanzado de código abierto.
--   [Supervisor](supervisor.md) - Monitor de proceso. 
--   [Ldap](ldap.md) - Conexión Active Directory.
-
 ## Comandos de ayuda.
 
 ## _Liberar cache de la aplicación_
 
 ```
 php artisan optimize:clear 
-```
-
-## _Migrar Entidades la aplicación_
-
-```
-php artisan migrate 
 ```
