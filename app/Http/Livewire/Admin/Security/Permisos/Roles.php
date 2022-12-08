@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Security\Permisos;
 
+use App\Traits\UtilityTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -11,10 +12,8 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
-    //use CMSTrait;
+    use UtilityTrait;
     use WithPagination;
-    //use LivewireTrait;
-    //use ListSearchTrait;
 
     public $formtitle = "Roles y permisos";
 
@@ -69,9 +68,9 @@ class Roles extends Component
             if (count($this->SelectPermisos) > 0) {
                 $role->syncPermissions($this->SelectPermisos);
             }
-
+            
             activity()
-                ->causedBy(auth()->user()->id)
+                ->causedBy(auth()->user())
                 ->performedOn($role)
                 ->withProperties($role)
                 ->log('created');

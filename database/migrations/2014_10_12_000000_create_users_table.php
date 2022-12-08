@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('nombre', 100)->nullable()->comment('Nombre del usuario');
             $table->string('usuario')->comment('Nombre codigo de usuario');
             $table->string('email')->unique()->comment('Correo electronico del usuario');
-            $table->timestamp('email_verified_at')->nullable()->comment('Fecha de verificacion del usuario');
             $table->string('contrasena')->comment('Contraseña del usuario');
             $table->rememberToken()->comment('Código de recuerda al usuario dentro de una sesión');
             $table->string('profile_photo_path', 2048)->nullable()->comment('Imagen avatar del usuario');

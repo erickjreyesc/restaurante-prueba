@@ -4,39 +4,35 @@
         <div class="row">
             <div class="py-2 col-12 align-content-middle">
                 <h1 class="title-index d-inline">{{$formtitle}}</h1>
-                @hasrole('Administrador')
+                @can('roles.listar')
                 <a class="btn text-success float-end" href="{{ route('roles.listar') }}">
                     <i class="me-1 fas fa-key"></i>Roles y permisos
                 </a>
-                @endhasrole
+                @endcan
             </div>
-            @canany(['usuarios.agregar', 'usuarios.editar' ])
+            @canany(['usuario.agregar', 'usuario.editar' ])
             {{-- formulario --}}
             <div
-                class="col-sm-12 {{ (auth()->user()->can('usuarios.agregar') || auth()->user()->can('usuarios.editar')) ? 'col-md-6 col-lg-4' : null}}">
+                class="col-sm-12 {{ (auth()->user()->can('usuario.agregar') || auth()->user()->can('usuario.editar')) ? 'col-md-6 col-lg-4' : null}}">
                 <form>
                     <div class="mb-3">
-                        <label for="usuario" class="form-label fw-bold text-main">Nombre de Usuario</label>
+                        <label for="usuario" class="form-label fw-bold text-main">Nombre de Usuario (Login)</label>
                         <input type="text" class="form-control" id="usuario" wire:model.defer="usuario" maxlength="100"
                             placeholder="Ingrese un nombre de Usuario">
                         @error('usuario')<span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold text-main">Nombre del usuario</label>
+                        <input type="text" class="form-control" id="nombre" wire:model.defer="nombre" maxlength="100"
+                            placeholder="Ingrese un nombre de nombre">
+                        @error('nombre')<span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label fw-bold text-main">Correo Electrónico</label>
                         <input type="email" class="form-control" id="email" wire:model.defer="email" maxlength="150"
                             placeholder="Ingrese un Correo Electrónico">
                         @error('email')<span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="mb-2">
-                        <label for="tituloInput" class="form-label fw-bold text-opc">Dependencia</label>
-                        <select wire:model='dependencia' class="form-control">
-                            <option value="">Seleccione</option>
-                            @foreach ($dependencias as $dependencia)
-                            <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
-                            @endforeach
-                        </select>
-                        @error('dependencia')<span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
+                    </div> 
                     <div class="mb-2">
                         <div wire:ignore>
                             <livewire:admin.misc.label-help titulo='Rol'
@@ -62,14 +58,14 @@
                     @endif
                     <div class="flex-row-reverse mb-2 d-flex">
                         @if ($editshow)
-                        @can("usuarios.editar")
-                        <button type="button" class="px-4 py-2 btn btn-main" wire:click="update({{$id}})"
+                        @can("usuario.editar")
+                        <button type="button" class="px-4 py-2 btn btn-main" wire:click="update({{$usuario_id}})"
                             wire:loading.attr="disabled" wire:loading.class="bg-gray">
                             <i class="me-1 fas fa-save"></i>Actualizar
                         </button>
                         @endcan
                         @else
-                        @can("usuarios.agregar")
+                        @can("usuario.agregar")
                         <button type="button" class="px-4 py-2 btn btn-main me-1" wire:click="store()"
                             wire:loading.attr="disabled" wire:loading.class="bg-gray">
                             <i class="me-1 fas fa-save"></i>Guardar
@@ -84,7 +80,7 @@
 
             {{-- tabla --}}
             <div
-                class="col-sm-12 {{ (auth()->user()->can('usuarios.agregar') || auth()->user()->can('usuarios.editar')) ? 'col-md-6 col-lg-8' : null}}">
+                class="col-sm-12 {{ (auth()->user()->can('usuario.agregar') || auth()->user()->can('usuario.editar')) ? 'col-md-6 col-lg-8' : null}}">
                 <div class="mb-2 input-group">
                     <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
                         aria-describedby="button-addon2" wire:model='buscar'>
@@ -106,8 +102,8 @@
                         <tr class="{{ (!$item->estado) ? 'inactive': ''}}">
                             <th scope=" row">{{$item->id}}</th>
                             <td>
+                                {{$item->nombre}} <br>
                                 {{$item->usuario}}
-                                <figcaption class="figure-caption">{{$item->dependencia->nombre}}</figcaption>
                                 @if (count($item->roles))
                                 @foreach ($item->roles as $roles)
                                 <figcaption class="figure-caption fw-bold">{{$roles->name. ((!$loop->last) ? ', ': null)
@@ -117,15 +113,15 @@
                             </td>
                             <td>{{ $item->email }}</td>
                             <td>
-                                @canany(['usuarios.editar', 'usuarios.cambiar', 'usuarios.eliminar',
-                                'usuarios.eliminar'])
+                                @canany(['usuario.editar', 'usuario.cambiar', 'usuario.eliminar',
+                                'usuario.eliminar'])
                                 <div class="btn-group float-end">
                                     <button type="button" class="text-white btn btn-primary dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="text-white fas fa-list"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        @can("usuarios.editar")
+                                        @can("usuario.editar")
                                         <li>
                                             <button type="button" class="btn" data-bs-toggle="tooltip"
                                                 data-bs-placement="bottom" title="Editando a {{ $item->usuario }}"
@@ -134,7 +130,7 @@
                                             </button>
                                         </li>
                                         @endcan
-                                        @can("usuarios.cambiar")
+                                        @can("usuario.cambiar")
                                         <li>
                                             <x-button type="button" class="btn " wire:click.prevent="change({{$item}})"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -143,7 +139,7 @@
                                             </x-button>
                                         </li>
                                         @endcan
-                                        @can("usuarios.eliminar")
+                                        @can("usuario.eliminar")
                                         <li>
                                             <x-button type="button" class="btn "
                                                 wire:click.prefetch="deleteConfirm({{$item}})" data-bs-toggle="tooltip"
@@ -153,11 +149,11 @@
                                             </x-button>
                                         </li>
                                         @endcan
-                                        @can("usuarios.reset")
+                                        @can("usuario.reset")
                                         @if ($item->estado)
                                         <li>
                                             <x-button type="button" class="btn "
-                                                wire:click.prefetch="resetContrasena({{$item->id}})"
+                                                wire:click.prefetch="resetContrasena({{$item}})"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Enviar contraseña a  {{ $item->usuario }}">
                                                 <i class="fas fa-key text-success"></i> Enviar contraseña

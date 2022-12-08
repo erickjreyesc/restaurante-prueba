@@ -2,12 +2,16 @@
 
 namespace App\Models\Param;
 
+use App\Traits\ActivityLogTrait;
+use App\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TipoOperacion extends Model
 {
     use HasFactory;
+    use ModelTrait;
+    use ActivityLogTrait;
 
     /**
      * The table associated with the model.

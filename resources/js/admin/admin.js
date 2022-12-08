@@ -11,3 +11,5 @@ require('./notifications');
 require('./scripts');
 
 require("../preloader");
+
+require('./pikaday');

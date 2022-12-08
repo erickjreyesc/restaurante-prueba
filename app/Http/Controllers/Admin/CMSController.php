@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Configuracion\Registro;
-use App\Models\PQRSD\Solicitud;
+use App\Models\Config\Registro;
 use Carbon\Carbon;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Support\Str;
 
 class CMSController extends Controller
@@ -51,35 +48,6 @@ class CMSController extends Controller
             'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8',
             'Content-Disposition' => 'attachment; filename="log_report_' . Carbon::now() . '.xls"',
         ]);
-    }
-
-    public function PdfDetailsSolicitud(Solicitud $solicitud, $textform = "activas")
-    {
-        try {
-            $fileName = 'detalles_' . $solicitud->codigo . '_' . $textform . '_' . Carbon::now()->format('Ymd') . '.pdf';
-
-            $html = view('livewire.admin.reportes.detalles', [
-                'solicitud' => $solicitud,
-                'impreso' => Carbon::now()->format('Y-m-d'),
-                'estado' => (intval($solicitud->cerrado) == 1) ? 'Cerrado' : 'Vigente',
-            ]);
-            $options = new Options();
-            $options->set('isRemoteEnabled', true);
-            $options->set('chroot', realpath(base_path()));
-            $options->set('enable_font_subsetting', false);
-            $options->set('pdf_backend', 'CPDF');
-            $options->set('default_media_type', 'screen');
-            $dompdf = new Dompdf($options);
-            $dompdf->loadHtml($html);
-            $dompdf->render();
-            //$this->setEncryption($dompdf);
-            $dompdf->stream($fileName, array('Attachment' => 1));
-        } catch (\Throwable $th) {
-            session()->flash('error', _('backend.errors.base', [
-                'code' => $th->getCode(),
-                'message' => $th->getMessage()
-            ]));
-        }
     }
 
     public function setEncryption($dompdf)

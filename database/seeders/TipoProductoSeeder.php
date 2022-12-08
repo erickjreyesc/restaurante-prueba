@@ -17,10 +17,16 @@ class TipoProductoSeeder extends Seeder
     {
         $data = array([
             'nombre' => "Bebida",
-            'descripcion' => "Indica si el producto es de categoría sobre bebida."
+            'descripcion' => "Indica si el producto es de categoría sobre bebida.",
+            'estado' => 1
         ],[
             'nombre' => "Comida",
-            'descripcion' => "Indica si el producto es de categoría sobre comidas."
+            'descripcion' => "Indica si el producto es de categoría sobre comidas.",
+            'estado' => 1
+        ],[
+            'nombre' => "Entremés",
+            'descripcion' => "Indica si el producto es de categoría sobre entremeses.",
+            'estado' => 1
         ]);
 
         foreach ($data as $key => $value) {

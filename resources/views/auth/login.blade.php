@@ -49,12 +49,6 @@
                 </div>
                 <div class="mb-0">
                     <div class="d-flex justify-content-end align-items-baseline">
-                        @if (Route::has('password.request'))
-                        <a class="text-muted me-3" href="{{ route('password.request') }}">
-                            {{ __('Olvido Contraseña?') }}
-                        </a>
-                        @endif
-
                         <x-jet-button>
                             {{ __('Acceder') }}
                         </x-jet-button>

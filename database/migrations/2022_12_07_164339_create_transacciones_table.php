@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreign('venta_id')->references('id')->on('ventas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('orden', 12)->nullable()->comment('Código de orden de compra');
             $table->integer('cantidad')->unsigned()->default(12);
-
             $table->timestamps();
         });
     }

@@ -10,10 +10,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens; 
+use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
-use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable
@@ -25,8 +25,8 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
     use ModelTrait;
-    use LogsActivity;
     use HasRoles;
+    use LogsActivity;
 
     /**
      * The primary key associated with the table.
@@ -48,7 +48,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'usuario', 'name', 'email', 'contrasena', 'estado'
+        'usuario', 'nombre', 'email', 'contrasena', 'estado'
     ];
 
     /**
@@ -93,16 +93,16 @@ class User extends Authenticatable
     public function dependencia()
     {
         return $this->belongsTo(Dependencias::class, 'dependencia_id', 'id');
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->dontLogIfAttributesChangedOnly(['contrasena'])->logOnlyDirty()->dontSubmitEmptyLogs();
-    }
+    } 
 
     public function sendPasswordResetNotification($token)
     {
         // Your your own implementation.
         $this->notify(new ResetPasswordNotification($token, $this->email));
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->dontLogIfAttributesChangedOnly(['contrasena'])->logOnlyDirty()->dontSubmitEmptyLogs();
     }
 }

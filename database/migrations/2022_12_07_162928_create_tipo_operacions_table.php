@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre')->comment('nombre del tipo de operacion del inventario');
             $table->text('descripcion')->nullable()->comment('descripcion del tipo de operacion del inventario');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12 align-content-middle pb-3">
                 <h1 class="title-index d-inline">{{$formtitle}}</h1>
-                <a class="btn btn-gray float-end" href="{{ route('security.usuarios') }}">
+                <a class="btn btn-gray float-end" href="{{ route('usuario.listar') }}">
                     <i class="me-1 fas fa-angle-left"></i>Usuarios
                 </a>
             </div>

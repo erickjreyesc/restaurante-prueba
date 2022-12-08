@@ -3,11 +3,9 @@
 namespace App\Http\Livewire\Admin\Security;
 
 use Livewire\Component;
-use App\Models\Configuracion\Registro;
+use App\Models\Config\Registro;
 use App\Models\User;
 use App\Traits\DatetimeTrait;
-use App\Traits\ListSearchTrait;
-use App\Traits\LivewireTrait;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Spatie\Activitylog\Models\Activity;
@@ -15,9 +13,7 @@ use Spatie\Activitylog\Models\Activity;
 class Registros extends Component
 {
     use WithPagination;
-   // use LivewireTrait;
     use DatetimeTrait;
-   // use ListSearchTrait;
 
     public $formtitle = 'Registros de actividades en base de datos.';
     public $inicio = null;
@@ -50,12 +46,12 @@ class Registros extends Component
     public function render()
     {
         $iniciolog = Activity::first(['created_at']);
+        $iniciolog = $this->ConvertStandardDate($iniciolog->created_at);
         $listamodellogs = DB::table('activity_log')->select('subject_type')->groupBy('subject_type')->get();
         $users = User::all();
         $results = [];
         if ((isset($this->inicio) && isset($this->final))) {
-
-            /* $results = Registro::whereBetween('created_at', [$this->inicio.' 00:00:00', $this->final.' 23:59:59']);
+            $results = Registro::whereBetween('created_at', [$this->inicio . ' 00:00:00', $this->final . ' 23:59:59']);
 
             if (!empty($this->search)) {
                 $results = $results->search($this->search)->paginate(15);
@@ -65,7 +61,7 @@ class Registros extends Component
                 $results = $results->where('causer_id', $this->usuario)->paginate(15);
             }
 
-            $results = $results->paginate(15); */
+            $results = $results->paginate(15);
         }
 
         return view('livewire.admin.security.registros', compact('iniciolog', 'users', 'listamodellogs', 'results'));

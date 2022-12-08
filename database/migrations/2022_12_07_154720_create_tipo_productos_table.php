@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->comment('nombre del tipo de productos del inventario');
             $table->text('descripcion')->nullable()->comment('descripcion del tipo de productos del inventario');
+            $table->boolean('estado')->default(false)->comment('Estado del objeto');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

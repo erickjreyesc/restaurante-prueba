@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('nombre', 100)->comment('Nombre del producto');
             $table->mediumText('descripcion')->nullable()->comment('Descripcion del producto');
             $table->float('precio')->default(0.00)->comment('precio del producto');
-            $table->boolean('activo')->default(false)->comment('Estado del objeto');
+            $table->boolean('estado')->nullable()->default(false)->comment('Estado del objeto');
             $table->unsignedBigInteger('tipo_producto_id')->comment('Llave foranea de la tabla tipo_productos.');
             $table->foreign('tipo_producto_id')->references('id')->on('tipo_producto')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
