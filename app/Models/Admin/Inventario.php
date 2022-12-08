@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Inventario extends Model
 {
@@ -15,6 +16,17 @@ class Inventario extends Model
      * @var string
      */
     protected $table = 'inventarios';
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            DB::update("update " . $model->table . " set estado = 0 where producto_id = ?", [
+                $model->producto_id
+            ]);
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
