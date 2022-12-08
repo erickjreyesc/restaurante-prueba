@@ -85,3 +85,10 @@ php artisan storage:link
 ```
 php artisan optimize:clear 
 ```
+
+## Credenciales
+
+```
+usuario: usuario
+contraseña: password123***
+```
