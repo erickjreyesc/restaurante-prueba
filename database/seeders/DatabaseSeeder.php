@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UsuarioSeeder::class,
             TipoOperacionSeeder::class,
             TipoProductoSeeder::class,
-            ProductoSeeder::class
+            ProductoSeeder::class,
+            InventarioSeeder::class
         ]);
     }
 }

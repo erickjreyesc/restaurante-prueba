@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventarios', function (Blueprint $table) {
+        Schema::create('inventario', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('producto_id')->comment('Llave foranea de la tabla productos.');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventarios');
+        Schema::dropIfExists('inventario');
     }
 };

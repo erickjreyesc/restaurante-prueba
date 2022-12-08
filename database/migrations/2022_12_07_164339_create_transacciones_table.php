@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id')->comment('Llave foranea de la tabla productos.');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('venta_id')->comment('Llave foranea de la tabla ventas.');
-            $table->foreign('venta_id')->references('id')->on('ventas')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('orden', 12)->nullable()->comment('Código de orden de compra');
+            $table->unsignedBigInteger('inventario_id')->comment('Llave foranea de la tabla inventario.');
+            $table->foreign('inventario_id')->references('id')->on('inventario')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('cliente_id')->comment('Llave foranea de la tabla clientes.');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('precio')->unsigned()->default(12);
             $table->integer('cantidad')->unsigned()->default(12);
             $table->timestamps();
         });

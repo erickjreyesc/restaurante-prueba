@@ -15,7 +15,7 @@ class Inventario extends Model
      *
      * @var string
      */
-    protected $table = 'inventarios';
+    protected $table = 'inventario';
 
     public static function boot()
     {
@@ -37,9 +37,9 @@ class Inventario extends Model
         'producto_id', 'tipo_operacion_id', 'ingreso', 'egreso', 'total'
     ];
 
-    public function productos()
+    public function producto()
     {
-        return $this->belongsTo(\App\Models\Admin\Producto::class, 'id', 'producto_id');
+        return $this->belongsTo(\App\Models\Admin\Producto::class, 'producto_id', 'id');
     }
 
     public function tipo_operacion()
