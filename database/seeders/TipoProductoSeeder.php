@@ -20,7 +20,7 @@ class TipoProductoSeeder extends Seeder
             'descripcion' => "Indica si el producto es de categoría sobre bebida.",
             'estado' => 1
         ],[
-            'nombre' => "Comida",
+            'nombre' => "Platos Principales",
             'descripcion' => "Indica si el producto es de categoría sobre comidas.",
             'estado' => 1
         ],[

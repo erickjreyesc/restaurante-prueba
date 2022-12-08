@@ -21,6 +21,9 @@ class TipoOperacionSeeder extends Seeder
         ],[
             'nombre' => "Salida",
             'descripcion' => "Indica la salida o egreso de un producto."
+        ],[
+            'nombre' => "Ajuste",
+            'descripcion' => "Indica que se modifica la cantidad total de productos."
         ]);
 
         foreach ($data as $key => $value) {

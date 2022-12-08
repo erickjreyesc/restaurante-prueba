@@ -9,6 +9,7 @@ use App\Http\Livewire\Admin\Security\Registros;
 use App\Http\Livewire\Admin\Security\Usuarios;
 use App\Http\Livewire\Admin\Transacciones\OrdenesComp;
 use App\Http\Livewire\Admin\Transacciones\ProductoComp;
+use App\Http\Livewire\Admin\Transacciones\ReportesComp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,11 +44,10 @@ Route::middleware(['auth:sanctum', 'verified', 'check-login', 'prevent-back-hist
     });
 
     Route::prefix('ventas')->group(function () {
-        Route::get('/ordenes', OrdenesComp::class)->name('venta.listar')->middleware('permission:ventas.listar|ventas.agregar|ventas.editar|ventas.cambiar|ventas.eliminar');
-        Route::get('/reportes', OrdenesComp::class)->name('reporte.listar')->middleware('permission:reporte.listar|reporte.generar|reporte.xls');
+        Route::get('/nueva-orden', OrdenesComp::class)->name('venta.agregar')->middleware('permission:venta.agregar');
+        Route::get('/reportes', ReportesComp::class)->name('reporte.listar')->middleware('permission:reporte.listar|reporte.generar|reporte.xls');
         Route::get('/productos', ProductoComp::class)->name('producto.listar')->middleware('permission:producto.listar|producto.agregar|producto.editar|producto.cambiar|producto.eliminar');
     });
-
 
     Route::prefix('parametros')->group(function () {
         Route::get('/tipo-producto', TipoProductoComp::class)->name('tipo-producto.listar')
@@ -55,7 +55,6 @@ Route::middleware(['auth:sanctum', 'verified', 'check-login', 'prevent-back-hist
         Route::get('/tipo-operacion', TipoOperacionComp::class)->name('tipo-operacion.listar')
             ->middleware('permission:tipo-operacion.listar');
     });
-
 
     Route::get('/exportar/xls/{solicitud}/vista/{textform}', [CMSController::class, 'PdfDetailsSolicitud'])->name('pdf.export');
 });

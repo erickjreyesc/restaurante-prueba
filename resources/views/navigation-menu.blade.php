@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="accordion accordion-flush" id="accordionFlushMainMenu">
-                @canany(['venta.listar', 'reporte.listar', 'producto.listar'])
+                @canany(['venta.agregar', 'reporte.listar', 'producto.listar'])
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingActas">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -49,8 +49,8 @@
                         aria-labelledby="flush-headingActas" data-bs-parent="#accordionFlushMainMenu">
                         <div class="border-0 accordion-body">
                             <ul class="list-group">
-                                @can('venta.listar')
-                                    <a class="no-bullets" href="{{ route('venta.listar') }}">
+                                @can('venta.agregar')
+                                    <a class="no-bullets" href="{{ route('venta.agregar') }}">
                                         <li class="list-group-item">
                                             <i class="fas fa-file-invoice me-1"></i>Ventas
                                         </li>

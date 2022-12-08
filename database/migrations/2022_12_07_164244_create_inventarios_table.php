@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('productos_id')->comment('Llave foranea de la tabla productos.');
-            $table->foreign('productos_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('producto_id')->comment('Llave foranea de la tabla productos.');
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('tipo_operacion_id')->comment('Llave foranea de la tabla tipo_operacion.');
             $table->foreign('tipo_operacion_id')->references('id')->on('tipo_operacion')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('ingreso')->unsigned()->default(0)->comment('Indica el ingreso de productos nuevos');

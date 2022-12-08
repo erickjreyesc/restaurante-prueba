@@ -52,4 +52,31 @@ class Producto extends Model
     {
         return $this->attributes['codigo'] = $this->setUpper($value);
     }
+
+    /**
+     * Set the 
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNombreAttribute($value)
+    {
+        return $this->attributes['nombre'] = $this->setUpper($value);
+    }
+
+    public function tipo_producto()
+    {
+        return $this->belongsTo(\App\Models\Param\TipoProducto::class, 'tipo_producto_id', 'id');
+    }
+
+    public function inventario()
+    {
+        return $this->hasMany(\App\Models\Admin\Inventario::class);
+    }
+    
+    public function lastProducto()
+    {
+        $data = Inventario::where('producto_id', $this->id)->where('estado', 1)->orderby('id', 'DESC')->first();
+        return $data;
+    }
 }

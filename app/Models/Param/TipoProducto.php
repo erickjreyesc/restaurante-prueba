@@ -37,4 +37,9 @@ class TipoProducto extends Model
     {
         return $query->where('nombre', 'like', '%' . $value . '%')->orwhere('descripcion', 'like', '%' . $value . '%');
     }
+
+    public function producto()
+    {
+        return $this->hasOne(\App\Models\Admin\Producto::class, 'tipo_operacion_id', 'id');
+    }
 }

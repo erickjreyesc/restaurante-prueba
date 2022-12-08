@@ -10,16 +10,16 @@
                 <form>
                     <div class="mb-2">
                         <label for="nombre" class="form-label fw-bold text-main">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" wire:model="nombre"
-                            maxlength="100" placeholder="Ingrese un nombre del producto">
+                        <input type="text" class="form-control" id="nombre" wire:model="nombre" maxlength="100"
+                            placeholder="Ingrese un nombre del producto">
                         @error('nombre')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-2">
                         <label for="codigo" class="form-label fw-bold text-main">Codigo</label>
-                        <input type="text" class="form-control" id="codigo" wire:model="codigo"
-                            maxlength="15" placeholder="Ingrese un codigo para el producto">
+                        <input type="text" class="form-control" id="codigo" wire:model="codigo" maxlength="15"
+                            placeholder="Ingrese un codigo para el producto">
                         @error('codigo')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -29,10 +29,12 @@
                         <select wire:model='tipo_producto_id' class="form-control">
                             <option value="">Seleccione</option>
                             @foreach ($tipo_productos as $tproducto)
-                            <option value="{{$tproducto->id}}">{{$tproducto->nombre}}</option>
+                                <option value="{{ $tproducto->id }}">{{ $tproducto->nombre }}</option>
                             @endforeach
                         </select>
-                        @error('tipo_producto_id')<span class="text-danger">{{ $message }}</span> @enderror
+                        @error('tipo_producto_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-2">
                         <label for="descripcion" class="form-label fw-bold text-main">Descripción</label>
@@ -50,12 +52,38 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    @if ($editshow)
+                        <div class="mb-2">
+                            <label for="tipo_operacion" class="form-label fw-bold text-opc">Tipo operación de
+                                inventario</label>
+                            <select wire:model='tipo_operacion_id' class="form-control">
+                                <option value="">Seleccione</option>
+                                @foreach ($tipo_operacion as $operacion)
+                                    <option value="{{ $operacion->id }}">{{ $operacion->nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('tipo_operacion_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
+                    <div class="mb-2">
+                        <label for="cantidad" class="form-label fw-bold text-main">Cantidad</label>
+                        <input type="number" step="0.01" class="form-control" id="cantidad" wire:model="cantidad"
+                            maxlength="15" placeholder="Ingrese un cantidad para el producto">
+                        @error('cantidad')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <div class="mb-2">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" wire:model="estado" id="visible">
                             <label class="form-check-label" for="estado">Estado</label>
                         </div>
-                        @error('estado')<span class="text-danger">{{ $message }}</span> @enderror
+                        @error('estado')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="flex-row-reverse mb-2 d-flex">
                         @if ($editshow)
@@ -83,7 +111,8 @@
                 <div class="mb-2 input-group">
                     <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
                         aria-describedby="button-addon2" wire:model='buscar'>
-                    <button class="btn btn-main" type="button" id="button-addon2" wire:click.prevent="resetSearch()">
+                    <button class="btn btn-main" type="button" id="button-addon2"
+                        wire:click.prevent="resetSearch()">
                         <i class="fas fa-undo me-1"></i>Restablecer
                     </button>
                 </div>
@@ -91,6 +120,7 @@
                     <thead class="admin-table">
                         <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Ult. transacción</th>
                             <th scope="col" width="150"></th>
                         </tr>
                     </thead>
@@ -98,8 +128,20 @@
                         @foreach ($results as $key => $item)
                             <tr class="{{ !$item->estado ? 'inactive' : '' }}">
                                 <td>
-                                    {{ $item->nombre }}<br>
-                                    <figcaption class="figure-caption">{{ $item->descripcion }}</figcaption>
+                                    {{ $item->nombre }} - {{ $item->codigo }}<br>
+                                    <figcaption class="figure-caption">
+                                        <b>{{ $item->tipo_producto->nombre }}</b> <br>
+                                        <b>COP</b> {{ $item->precio }} <br>
+                                        {{ $item->descripcion }}
+                                    </figcaption>
+                                </td>
+                                <td>
+                                    @if (!is_null($item->lastProducto()))
+                                        {{ $item->lastProducto()->total }} <br>
+                                        {{ $item->lastProducto()->tipo_operacion->nombre }}  
+                                    @else
+                                        Sin inventario cargado
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="btn-group float-end">

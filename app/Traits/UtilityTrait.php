@@ -77,17 +77,12 @@ trait UtilityTrait
         return Str::lower($value);
     }
 
-    public function setCode($tipo = 1)
+    public function numericFloatConverter($value)
     {
-        $randint = rand(1000, 9999);
-        $count = Reunion::whereYear('created_at', Carbon::now()->year)->count();
-        $acronimo = TipoReunion::find($tipo);
-        $setanio = (intval($acronimo->anio) == 1) ? Carbon::now()->format('Y') : null;
-        $setmes = (intval($acronimo->mes) == 1) ? Carbon::now()->format('m') : null;
-        $setdia = (intval($acronimo->dia) == 1) ? Carbon::now()->format('d') : null;
-        $setacronimo = (intval($acronimo->asignar) == 1) ? $acronimo->acronimo : null;
-        $formato = "${setacronimo}${randint}${setanio}${setmes}${setdia}%04d";
-        $formatCount = sprintf($formato, $count + 1);
-        return $formatCount;
+        $value = floatval($value);
+        if (strstr($value, ",")) {
+            return $value = str_replace(",", ".", $value);
+        }
+        return $value;
     }
 }
