@@ -87,7 +87,7 @@ class ProductoComp extends Component
 
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',
-                'message' => __('backend.model.resource.updated', [
+                'message' => __('backend.model.resource.created', [
                     'value' => $this->nombre
                 ])
             ]);

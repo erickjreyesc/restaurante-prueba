@@ -38,6 +38,7 @@ return [
             'update' => 'Configuración actualizada exitosamente.',
         ],
         'resource' => [
+            'create' => 'Venta agregada.',
             'created' => 'Recurso :value agregado.',
             'request' => 'Solicitud actualizada exitosamente.',
             'deleted' => 'Recurso :value eliminado.',

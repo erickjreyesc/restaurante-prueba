@@ -76,16 +76,16 @@ return [
     'present'              => 'Debe estar presente.',
     'password_string'      => 'Debe tener al menos 2 mayúsculas, 2 minúsculas, 2 números, 2 carácteres especiales y una longitud mínima de 12 carácteres',
     'phone'                => 'Debe ser un número teléfonico válido',
-    'recaptcha'            => 'El :attribute es incorrecto.',
+    'recaptcha'            => 'Es incorrecto.',
     'regex'                => 'El formato del campo es inválido.',
-    'required'             => 'El campo :attribute es requerido.',
+    'required'             => 'El campo es requerido.',
     'required_if'          => 'Requerido cuando el campo :other es :value.',
     'required_unless'      => 'El campo es requerido a menos que :other se encuentre en :values.',
     'required_with'        => 'Requerido cuando :values está presente.',
     'required_with_all'    => 'Requerido cuando :values está presente.',
     'required_without'     => 'Requerido cuando :values no está presente.',
     'required_without_all' => 'Requerido cuando ninguno de los campo :attributes :values está presente.',
-    'same'                 => 'Los campos :attribute y :other deben coincidir.',
+    'same'                 => 'Los campos y :other deben coincidir.',
     'size'                 => [
         'numeric' => 'Debe ser :size.',
         'file'    => 'El archivo debe pesar :size kilobytes.',
@@ -98,7 +98,7 @@ return [
     'timezone'             => 'Debe contener una zona válida.',
     'unique'               => 'El valor del campo ya está en uso.',
     'uploaded'             => 'Hubo un falló al subir el archivo.',
-    'url'                  => 'El formato  url del campo :attribute es inválido.',
+    'url'                  => 'El formato  url del campo es inválido.',
 
     /*
     |--------------------------------------------------------------------------
